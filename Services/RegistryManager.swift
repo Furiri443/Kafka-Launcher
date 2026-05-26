@@ -213,26 +213,38 @@ struct RegistryManager {
     }
     
     static func importCertificate(at path: String, wineManager: WineManager, prefix: String) async throws -> String? {
-        guard let pemData = try? Data(contentsOf: URL(fileURLWithPath: path)),
-              let pemStr = String(data: pemData, encoding: .utf8) else {
+        guard let fileData = try? Data(contentsOf: URL(fileURLWithPath: path)) else {
             return nil
         }
         
-        let components = pemStr.components(separatedBy: "-----BEGIN CERTIFICATE-----")
+        var derDataList: [Data] = []
+        
+        if let pemStr = String(data: fileData, encoding: .utf8),
+           pemStr.contains("-----BEGIN CERTIFICATE-----") {
+            let components = pemStr.components(separatedBy: "-----BEGIN CERTIFICATE-----")
+            for comp in components {
+                guard comp.contains("-----END CERTIFICATE-----") else { continue }
+                let parts = comp.components(separatedBy: "-----END CERTIFICATE-----")
+                guard let base64Str = parts.first else { continue }
+                
+                let cleanBase64 = base64Str.replacingOccurrences(of: "\n", with: "")
+                                            .replacingOccurrences(of: "\r", with: "")
+                                            .replacingOccurrences(of: " ", with: "")
+                
+                if let derData = Data(base64Encoded: cleanBase64) {
+                    derDataList.append(derData)
+                }
+            }
+        } else {
+            // Assume the file is already raw DER data
+            derDataList.append(fileData)
+        }
+        
+        guard !derDataList.isEmpty else { return nil }
+        
         var entries: [(key: String, values: [(name: String, value: RegistryValue)])] = []
         
-        for comp in components {
-            guard comp.contains("-----END CERTIFICATE-----") else { continue }
-            let parts = comp.components(separatedBy: "-----END CERTIFICATE-----")
-            guard let base64Str = parts.first else { continue }
-            
-            // Clean up base64 string
-            let cleanBase64 = base64Str.replacingOccurrences(of: "\n", with: "")
-                                        .replacingOccurrences(of: "\r", with: "")
-                                        .replacingOccurrences(of: " ", with: "")
-            
-            guard let derData = Data(base64Encoded: cleanBase64) else { continue }
-            
+        for derData in derDataList {
             // Compute SHA-1
             let hash = Insecure.SHA1.hash(data: derData)
             let hashBytes = Array(hash)
