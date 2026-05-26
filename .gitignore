@@ -18,3 +18,7 @@ xcuserdata/
 !*.xcodeproj/
 !*.xcworkspace/
 !*.code-workspace
+
+# Claude
+.claude
+
