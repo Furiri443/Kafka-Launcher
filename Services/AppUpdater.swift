@@ -36,12 +36,6 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             updateStatus = "Checking for updates..."
         }
         
-        defer {
-            await MainActor.run {
-                isChecking = false
-            }
-        }
-        
         do {
             let url = URL(string: "https://api.github.com/repos/Furiri443/Kafka-Launcher/releases/latest")!
             var request = URLRequest(url: url)
@@ -51,6 +45,7 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             let (data, response) = try await URLSession.shared.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse, httpResponse.statusCode == 200 else {
                 await MainActor.run {
+                    isChecking = false
                     updateStatus = "Failed to fetch updates"
                 }
                 return false
@@ -74,6 +69,7 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             let isNewer = latestVer.compare(currentVer, options: .numeric) == .orderedDescending
             
             await MainActor.run {
+                self.isChecking = false
                 self.latestVersion = latestVer
                 self.releaseNotes = release.body
                 if isNewer {
@@ -96,6 +92,7 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
         } catch {
             print("Failed to check for updates: \(error)")
             await MainActor.run {
+                self.isChecking = false
                 self.updateStatus = "Error checking updates: \(error.localizedDescription)"
             }
             return false
