@@ -17,7 +17,7 @@ permissions:
 jobs:
   build:
     name: Build macOS Application
-    runs-on: macos-14
+    runs-on: macos-26
 
     steps:
       - name: Checkout Code
@@ -25,7 +25,7 @@ jobs:
 
       - name: Select Xcode Version
         run: |
-          XCODE_PATH=$(ls -d /Applications/Xcode_16*.app 2>/dev/null | head -n 1)
+          XCODE_PATH=$(ls -d /Applications/Xcode_26*.app 2>/dev/null | head -n 1)
           if [ -z "$XCODE_PATH" ]; then
             XCODE_PATH="/Applications/Xcode.app"
           fi
