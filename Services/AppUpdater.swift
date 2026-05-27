@@ -158,35 +158,46 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             let currentAppPath = currentAppURL.path
             let newAppPath = appBundle.path
             let scriptPath = tempDir.appendingPathComponent("updater.sh").path
-            
             let pid = ProcessInfo.processInfo.processIdentifier
             let scriptContent = """
             #!/bin/bash
+            exec > /tmp/kafka-launcher-updater.log 2>&1
+            set -x
+            echo "Updater script started. Parent PID: \(pid)"
+
             # Wait for parent (Kafka Launcher) to exit
             while kill -0 \(pid) 2>/dev/null; do
                 sleep 0.2
             done
 
-            # Replace the app safely
+            echo "Parent process exited. Replacing application bundle..."
             BACKUP_PATH="\(currentAppPath).bak"
             rm -rf "$BACKUP_PATH"
-            mv "\(currentAppPath)" "$BACKUP_PATH"
-
-            if cp -R "\(newAppPath)" "\(currentAppPath)"; then
-                rm -rf "$BACKUP_PATH"
+            
+            if mv "\(currentAppPath)" "$BACKUP_PATH"; then
+                echo "Successfully moved current app to backup path."
+                if /usr/bin/ditto "\(newAppPath)" "\(currentAppPath)"; then
+                    echo "Ditto copy of new app version succeeded. Removing backup."
+                    rm -rf "$BACKUP_PATH"
+                else
+                    echo "Ditto copy failed! Rolling back to backup path..."
+                    mv "$BACKUP_PATH" "\(currentAppPath)"
+                fi
             else
-                # Rollback
-                mv "$BACKUP_PATH" "\(currentAppPath)"
+                echo "Failed to move current app to backup path. Application remains unchanged."
             fi
 
             # Remove macOS quarantine attribute and restore original file permissions
+            echo "Removing quarantine flags..."
             /usr/bin/xattr -dr com.apple.quarantine "\(currentAppPath)" 2>/dev/null
 
             # Relaunch the app
+            echo "Opening updated application bundle..."
             open "\(currentAppPath)"
 
             # Clean up temp files
             rm -rf "\(tempDir.path)"
+            echo "Updater script finished."
             """
             
             try scriptContent.write(toFile: scriptPath, atomically: true, encoding: .utf8)
