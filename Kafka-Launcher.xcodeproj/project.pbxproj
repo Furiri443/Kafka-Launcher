@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXFileReference section */
+		C640525D2FC6B1BC003A9E3B /* Kafka-Launcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Kafka-Launcher.xcodeproj"; sourceTree = "<group>"; };
 		C6F2BF2C2F90EE87006C60B9 /* Kafka-Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kafka-Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		C6F2BF2E2F90EE87006C60B9 /* Kafka-Launcher */ = {
+		C6F2BF2E2F90EE87006C60B9 /* . */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = ".";
+			path = .;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -29,10 +30,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C640525F2FC6B1BC003A9E3B /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
 		C6F2BF232F90EE87006C60B9 = {
 			isa = PBXGroup;
 			children = (
-				C6F2BF2E2F90EE87006C60B9 /* Kafka-Launcher */,
+				C6F2BF2E2F90EE87006C60B9 /* . */,
 				C6F2BF2D2F90EE87006C60B9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -61,7 +67,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				C6F2BF2E2F90EE87006C60B9 /* Kafka-Launcher */,
+				C6F2BF2E2F90EE87006C60B9 /* . */,
 			);
 			name = "Kafka-Launcher";
 			packageProductDependencies = (
@@ -97,6 +103,12 @@
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C6F2BF2D2F90EE87006C60B9 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C640525F2FC6B1BC003A9E3B /* Products */;
+					ProjectRef = C640525D2FC6B1BC003A9E3B /* Kafka-Launcher.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C6F2BF2B2F90EE87006C60B9 /* Kafka-Launcher */,
