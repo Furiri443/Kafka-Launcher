@@ -5,6 +5,11 @@ on:
     tags:
       - 'v*'
   workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name for manual release (e.g. v1.0.0). Leave empty to run without creating a release.'
+        required: false
+        default: ''
 
 permissions:
   contents: write
@@ -95,8 +100,9 @@ jobs:
 
       - name: Create GitHub Release and Upload Assets
         uses: softprops/action-gh-release@v2
-        if: startsWith(github.ref, 'refs/tags/')
+        if: startsWith(github.ref, 'refs/tags/') || (github.event_name == 'workflow_dispatch' && github.event.inputs.tag_name != '')
         with:
+          tag_name: ${{ github.event.inputs.tag_name || github.ref_name }}
           files: |
             Kafka-Launcher-Intel-x86_64.zip
             Kafka-Launcher-AppleSilicon-arm64.zip
