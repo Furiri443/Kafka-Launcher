@@ -560,34 +560,40 @@ class GameManager {
             launchLog.info("════════════════════════════════════════")
 
             // 0. Start FireflyPS Server and Proxy if enabled
-            if config.useFireflyPS {
-                launchLog.info("[Phase 1] FireflyPS mode enabled. Preparing server & proxy...")
+            if config.useFireflyPS || config.usePrivateServer {
                 let paths = try await ensureProxyBinaryAvailable(config: config)
                 
-                // 0a. Launch PS Server
-                let psProcess = Process()
-                psProcess.executableURL = URL(fileURLWithPath: paths.psPath)
-                psProcess.currentDirectoryURL = URL(fileURLWithPath: proxyDirectoryPath)
-                psProcess.standardOutput = FileHandle.nullDevice
-                psProcess.standardError = FileHandle.nullDevice
-                
-                launchLog.info("[Phase 1] Starting FireflyPS Server at \(paths.psPath)...")
-                try psProcess.run()
-                self.activePSProcess = psProcess
-                
-                // Give PS server a moment to start and bind to port 21000
-                try await Task.sleep(nanoseconds: 1_000_000_000)
+                if config.useFireflyPS {
+                    launchLog.info("[Phase 1] FireflyPS mode enabled. Preparing server & proxy...")
+                    
+                    // 0a. Launch PS Server
+                    let psProcess = Process()
+                    psProcess.executableURL = URL(fileURLWithPath: paths.psPath)
+                    psProcess.currentDirectoryURL = URL(fileURLWithPath: proxyDirectoryPath)
+                    psProcess.standardOutput = FileHandle.nullDevice
+                    psProcess.standardError = FileHandle.nullDevice
+                    
+                    launchLog.info("[Phase 1] Starting FireflyPS Server at \(paths.psPath)...")
+                    try psProcess.run()
+                    self.activePSProcess = psProcess
+                    
+                    // Give PS server a moment to start and bind to port 21000
+                    try await Task.sleep(nanoseconds: 1_000_000_000)
+                } else {
+                    launchLog.info("[Phase 1] Private Server mode enabled. Preparing proxy...")
+                }
                 
                 // 0b. Launch Proxy
                 freePort = findFreePort()
                 let proxyProcess = Process()
                 proxyProcess.executableURL = URL(fileURLWithPath: paths.proxyPath)
-                proxyProcess.arguments = ["-no-sys", "-p", String(freePort), "-r", "127.0.0.1:21000"]
+                let redirectHost = config.useFireflyPS ? "127.0.0.1:21000" : (config.privateServerAddress.isEmpty ? "127.0.0.1:21000" : config.privateServerAddress)
+                proxyProcess.arguments = ["-no-sys", "-p", String(freePort), "-r", redirectHost]
                 proxyProcess.currentDirectoryURL = URL(fileURLWithPath: proxyDirectoryPath)
                 proxyProcess.standardOutput = FileHandle.nullDevice
                 proxyProcess.standardError = FileHandle.nullDevice
                 
-                launchLog.info("[Phase 1] Starting FireflyPS Proxy at port \(freePort) redirecting to 127.0.0.1:21000...")
+                launchLog.info("[Phase 1] Starting FireflyPS Proxy at port \(freePort) redirecting to \(redirectHost)...")
                 try proxyProcess.run()
                 self.activeProxyProcess = proxyProcess
                 
@@ -636,10 +642,8 @@ class GameManager {
 
             let isProxyEnabled = config.useFireflyPS || config.usePrivateServer || config.proxyEnabled
             let targetProxyHost: String
-            if config.useFireflyPS {
+            if config.useFireflyPS || config.usePrivateServer {
                 targetProxyHost = "127.0.0.1:\(freePort)"
-            } else if config.usePrivateServer {
-                targetProxyHost = config.privateServerAddress
             } else {
                 targetProxyHost = config.proxyHost
             }
@@ -809,12 +813,9 @@ class GameManager {
             }
 
             // Proxy
-            if config.useFireflyPS {
+            if config.useFireflyPS || config.usePrivateServer {
                 env["HTTP_PROXY"] = "127.0.0.1:\(freePort)"
                 env["HTTPS_PROXY"] = "127.0.0.1:\(freePort)"
-            } else if config.usePrivateServer {
-                env["HTTP_PROXY"] = config.privateServerAddress
-                env["HTTPS_PROXY"] = config.privateServerAddress
             } else if config.proxyEnabled && !config.proxyHost.isEmpty {
                 env["HTTP_PROXY"] = config.proxyHost
                 env["HTTPS_PROXY"] = config.proxyHost
