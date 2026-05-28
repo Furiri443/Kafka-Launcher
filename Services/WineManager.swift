@@ -24,6 +24,39 @@ class WineManager {
     // MARK: - Wine Distributions
 
     static let distributions: [WineDistribution] = [
+        // ── DXMT-compatible (Experimental/Signed) ──
+        WineDistribution(
+            id: "11.0-1-crossover-signed-experimental",
+            displayName: "Wine 11.0-1 Crossover (signed, experimental)",
+            remoteUrl: "https://github.com/yaagl/anime-game-wine/releases/download/wine-crossover-11.0-1-signed/wine-crossover-11.0-1-osx64-signed.tar.xz",
+            format: .tarXz,
+            winePath: "wine",
+            renderBackend: "dxmt"
+        ),
+        WineDistribution(
+            id: "11.8-dxmt-signed-experimental",
+            displayName: "Wine 11.8 DXMT (signed, experimental)",
+            remoteUrl: "https://github.com/yaagl/anime-game-wine/releases/download/wine-11.8-signed/wine-devel-11.8-osx64-signed.tar.xz",
+            format: .tarXz,
+            winePath: "wine",
+            renderBackend: "dxmt"
+        ),
+        WineDistribution(
+            id: "11.4-dxmt-signed",
+            displayName: "Wine 11.4 DXMT (signed)",
+            remoteUrl: "https://github.com/dawn-winery/dawn-signed/releases/download/wine-gcenx-11.4-osx64/wine-devel-11.4-osx64-signed.tar.xz",
+            format: .tarXz,
+            winePath: "wine-devel-11.4-osx64-signed/Contents/Resources/wine",
+            renderBackend: "dxmt"
+        ),
+        WineDistribution(
+            id: "11.0-dxmt-signed",
+            displayName: "Wine 11.0 DXMT (signed)",
+            remoteUrl: "https://github.com/dawn-winery/dawn-signed/releases/download/wine-stable-gcenx-11.0-osx64/wine-stable-11.0-osx64-signed.tar.xz",
+            format: .tarXz,
+            winePath: "Wine Stable.app/Contents/Resources/wine",
+            renderBackend: "dxmt"
+        ),
         // ── DXMT-compatible (3Shain builds) ──
         WineDistribution(
             id: "9.9-dxmt",
@@ -60,7 +93,7 @@ class WineManager {
         ),
     ]
 
-    static let defaultDistribution = distributions[0] // Wine 9.9 DXMT (3Shain)
+    static let defaultDistribution = distributions.first(where: { $0.id == "9.9-dxmt" }) ?? distributions[0]
 
     // MARK: - Persistent Wine State Keys
 
