@@ -14,14 +14,15 @@ struct RegistryManager {
         for entry in entries {
             content += "[\(entry.key)]\r\n"
             for (name, value) in entry.values {
+                let escapedName = escapeRegistryString(name)
                 switch value {
                 case .string(let s):
-                    content += "\"\(name)\"=\"\(s)\"\r\n"
+                    content += "\"\(escapedName)\"=\"\(escapeRegistryString(s))\"\r\n"
                 case .dword(let d):
-                    content += "\"\(name)\"=dword:\(String(format: "%08x", d))\r\n"
+                    content += "\"\(escapedName)\"=dword:\(String(format: "%08x", d))\r\n"
                 case .hex(let bytes):
                     let hexStr = bytes.map { String(format: "%02x", $0) }.joined(separator: ",")
-                    content += "\"\(name)\"=hex:\(hexStr)\r\n"
+                    content += "\"\(escapedName)\"=hex:\(hexStr)\r\n"
                 }
             }
             content += "\r\n"
@@ -32,6 +33,12 @@ struct RegistryManager {
             data.append(encoded)
         }
         return data
+    }
+
+    private static func escapeRegistryString(_ value: String) -> String {
+        value
+            .replacingOccurrences(of: "\\", with: "\\\\")
+            .replacingOccurrences(of: "\"", with: "\\\"")
     }
 
     // MARK: - Wine Launch Registry

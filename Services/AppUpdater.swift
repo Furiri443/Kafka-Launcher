@@ -23,6 +23,17 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
     private var session: URLSession?
     private var continuation: CheckedContinuation<URL, Error>?
     private var destinationURL: URL?
+
+    private struct GitHubRelease: Decodable {
+        let tag_name: String
+        let body: String?
+        let assets: [ReleaseAsset]
+    }
+
+    private struct ReleaseAsset: Decodable {
+        let name: String
+        let browser_download_url: String
+    }
     
     override init() {
         super.init()
@@ -52,36 +63,25 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
                 return false
             }
             
-            struct Release: Codable {
-                let tag_name: String
-                let body: String?
-                let html_url: String
-                struct Asset: Codable {
-                    let name: String
-                    let browser_download_url: String
-                }
-                let assets: [Asset]
-            }
-            
-            let release = try JSONDecoder().decode(Release.self, from: data)
+            let release = try JSONDecoder().decode(GitHubRelease.self, from: data)
             let latestVer = release.tag_name.trimmingCharacters(in: CharacterSet(charactersIn: "vV")).trimmingCharacters(in: .whitespacesAndNewlines)
             let currentVer = currentVersion.trimmingCharacters(in: .whitespacesAndNewlines)
             
             let isNewer = latestVer.compare(currentVer, options: .numeric) == .orderedDescending
+            let selectedDownloadURL = Self.preferredAsset(from: release.assets)
+                .flatMap { URL(string: $0.browser_download_url) }
             
             await MainActor.run {
                 self.isChecking = false
                 self.latestVersion = latestVer
                 self.releaseNotes = release.body
                 if isNewer {
-                    if let zipAsset = release.assets.first(where: { $0.name.lowercased().hasSuffix(".zip") }) {
-                        self.downloadURL = URL(string: zipAsset.browser_download_url)
-                    } else if let firstAsset = release.assets.first {
-                        self.downloadURL = URL(string: firstAsset.browser_download_url)
-                    }
-                    self.updateAvailable = true
-                    self.updateStatus = "New version \(latestVer) is available."
-                    if prompt {
+                    self.downloadURL = selectedDownloadURL
+                    self.updateAvailable = selectedDownloadURL != nil
+                    self.updateStatus = self.updateAvailable
+                        ? "New version \(latestVer) is available."
+                        : "New version \(latestVer) found, but no compatible download asset is available."
+                    if prompt && self.updateAvailable {
                         self.showUpdatePrompt = true
                     }
                 } else {
@@ -89,7 +89,7 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
                     self.updateStatus = "Kafka Launcher is up to date."
                 }
             }
-            return isNewer
+            return isNewer && selectedDownloadURL != nil
         } catch {
             print("Failed to check for updates: \(error)")
             await MainActor.run {
@@ -136,18 +136,15 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             let extractionDir = tempDir.appendingPathComponent("extracted")
             try FileManager.default.createDirectory(at: extractionDir, withIntermediateDirectories: true)
             
-            let process = Process()
-            process.executableURL = URL(fileURLWithPath: "/usr/bin/unzip")
-            process.arguments = ["-o", zipPath.path, "-d", extractionDir.path]
-            process.standardOutput = FileHandle.nullDevice
-            process.standardError = FileHandle.nullDevice
-            try await ProcessRunner.run(process)
+            try await ProcessRunner.runChecked(
+                "/usr/bin/unzip",
+                arguments: ["-o", zipPath.path, "-d", extractionDir.path],
+                errorBuilder: { _ in Self.updaterError("Failed to extract the update archive.") }
+            )
             
             let fm = FileManager.default
-            let contents = try fm.contentsOfDirectory(at: extractionDir, includingPropertiesForKeys: nil)
-            guard let appBundle = contents.first(where: { $0.pathExtension == "app" }) else {
-                throw NSError(domain: "Updater", code: 404, userInfo: [NSLocalizedDescriptionKey: "No .app bundle found in the downloaded archive."])
-            }
+            let appBundle = try Self.findAppBundle(in: extractionDir)
+            try Self.validateDownloadedApp(appBundle)
             
             await MainActor.run {
                 updateProgress = 0.95
@@ -159,44 +156,79 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             let newAppPath = appBundle.path
             let scriptPath = tempDir.appendingPathComponent("updater.sh").path
             let pid = ProcessInfo.processInfo.processIdentifier
+            let quotedCurrentAppPath = Self.shellQuoted(currentAppPath)
+            let quotedNewAppPath = Self.shellQuoted(newAppPath)
+            let quotedBackupPath = Self.shellQuoted("\(currentAppPath).bak")
+            let quotedTempDirPath = Self.shellQuoted(tempDir.path)
             let scriptContent = """
             #!/bin/bash
             exec > /tmp/kafka-launcher-updater.log 2>&1
-            set -x
-            echo "Updater script started. Parent PID: \(pid)"
+            set -u
+
+            CURRENT_APP=\(quotedCurrentAppPath)
+            NEW_APP=\(quotedNewAppPath)
+            BACKUP_PATH=\(quotedBackupPath)
+            TEMP_DIR=\(quotedTempDirPath)
+            PARENT_PID=\(pid)
+
+            install_update() {
+                /bin/rm -rf "$BACKUP_PATH"
+                /bin/mv "$CURRENT_APP" "$BACKUP_PATH" || return 1
+
+                if /usr/bin/ditto "$NEW_APP" "$CURRENT_APP"; then
+                    /usr/bin/xattr -dr com.apple.quarantine "$CURRENT_APP" 2>/dev/null || true
+                    /bin/rm -rf "$BACKUP_PATH"
+                    return 0
+                fi
+
+                /bin/rm -rf "$CURRENT_APP"
+                /bin/mv "$BACKUP_PATH" "$CURRENT_APP" 2>/dev/null || true
+                return 1
+            }
+
+            install_update_with_admin() {
+                ADMIN_SCRIPT="$TEMP_DIR/admin-install.applescript"
+                /bin/cat > "$ADMIN_SCRIPT" <<'APPLESCRIPT'
+            on run argv
+                set currentApp to item 1 of argv
+                set newApp to item 2 of argv
+                set backupPath to item 3 of argv
+                set commandText to "set -e; /bin/rm -rf " & quoted form of backupPath & "; /bin/mv " & quoted form of currentApp & " " & quoted form of backupPath & "; if /usr/bin/ditto " & quoted form of newApp & " " & quoted form of currentApp & "; then /usr/bin/xattr -dr com.apple.quarantine " & quoted form of currentApp & " 2>/dev/null || true; /bin/rm -rf " & quoted form of backupPath & "; else /bin/rm -rf " & quoted form of currentApp & "; /bin/mv " & quoted form of backupPath & " " & quoted form of currentApp & "; exit 1; fi"
+                do shell script commandText with administrator privileges
+            end run
+            APPLESCRIPT
+                /usr/bin/osascript "$ADMIN_SCRIPT" "$CURRENT_APP" "$NEW_APP" "$BACKUP_PATH"
+            }
+
+            echo "Updater script started. Parent PID: $PARENT_PID"
 
             # Wait for parent (Kafka Launcher) to exit
-            while kill -0 \(pid) 2>/dev/null; do
+            while /bin/kill -0 "$PARENT_PID" 2>/dev/null; do
                 sleep 0.2
             done
 
             echo "Parent process exited. Replacing application bundle..."
-            BACKUP_PATH="\(currentAppPath).bak"
-            rm -rf "$BACKUP_PATH"
-            
-            if mv "\(currentAppPath)" "$BACKUP_PATH"; then
-                echo "Successfully moved current app to backup path."
-                if /usr/bin/ditto "\(newAppPath)" "\(currentAppPath)"; then
-                    echo "Ditto copy of new app version succeeded. Removing backup."
-                    rm -rf "$BACKUP_PATH"
-                else
-                    echo "Ditto copy failed! Rolling back to backup path..."
-                    mv "$BACKUP_PATH" "\(currentAppPath)"
-                fi
-            else
-                echo "Failed to move current app to backup path. Application remains unchanged."
-            fi
 
-            # Remove macOS quarantine attribute and restore original file permissions
-            echo "Removing quarantine flags..."
-            /usr/bin/xattr -dr com.apple.quarantine "\(currentAppPath)" 2>/dev/null
+            if install_update; then
+                echo "Update installed without administrator privileges."
+            else
+                echo "Normal install failed. Retrying with administrator privileges..."
+                if install_update_with_admin; then
+                    echo "Update installed with administrator privileges."
+                else
+                    echo "Privileged install failed."
+                    if [ -d "$BACKUP_PATH" ] && [ ! -d "$CURRENT_APP" ]; then
+                        /bin/mv "$BACKUP_PATH" "$CURRENT_APP" 2>/dev/null || true
+                    fi
+                fi
+            fi
 
             # Relaunch the app
             echo "Opening updated application bundle..."
-            open "\(currentAppPath)"
+            /usr/bin/open -n "$CURRENT_APP"
 
             # Clean up temp files
-            rm -rf "\(tempDir.path)"
+            /bin/rm -rf "$TEMP_DIR"
             echo "Updater script finished."
             """
             
@@ -207,6 +239,7 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
             let scriptProcess = Process()
             scriptProcess.executableURL = URL(fileURLWithPath: "/bin/bash")
             scriptProcess.arguments = [scriptPath]
+            scriptProcess.standardInput = FileHandle.nullDevice
             scriptProcess.standardOutput = FileHandle.nullDevice
             scriptProcess.standardError = FileHandle.nullDevice
             try scriptProcess.run()
@@ -227,6 +260,88 @@ class AppUpdater: NSObject, URLSessionDownloadDelegate {
                 updateStatus = "Update failed: \(error.localizedDescription)"
             }
         }
+    }
+
+    private static func preferredAsset(from assets: [ReleaseAsset]) -> ReleaseAsset? {
+        let namedAssets = assets.map { (asset: $0, name: $0.name.lowercased()) }
+        let zipAssets = namedAssets.filter { $0.name.hasSuffix(".zip") }
+
+        #if arch(arm64)
+        let architectureNames = ["applesilicon", "apple-silicon", "arm64", "aarch64"]
+        #elseif arch(x86_64)
+        let architectureNames = ["intel", "x86_64", "x64", "amd64"]
+        #else
+        let architectureNames: [String] = []
+        #endif
+
+        if let asset = zipAssets.first(where: { item in
+            architectureNames.contains(where: { item.name.contains($0) })
+        }) {
+            return asset.asset
+        }
+
+        if let universal = zipAssets.first(where: { $0.name.contains("universal") }) {
+            return universal.asset
+        }
+
+        return zipAssets.first?.asset ?? namedAssets.first?.asset
+    }
+
+    private static func shellQuoted(_ value: String) -> String {
+        "'\(value.replacingOccurrences(of: "'", with: "'\\''"))'"
+    }
+
+    private static func findAppBundle(in directory: URL) throws -> URL {
+        let fm = FileManager.default
+        let contents = try fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil)
+        if let appBundle = contents.first(where: { $0.pathExtension == "app" }) {
+            return appBundle
+        }
+
+        if let enumerator = fm.enumerator(at: directory, includingPropertiesForKeys: [.isDirectoryKey]) {
+            for case let url as URL in enumerator where url.pathExtension == "app" {
+                return url
+            }
+        }
+
+        throw updaterError("No .app bundle found in the downloaded archive.")
+    }
+
+    private static func validateDownloadedApp(_ appURL: URL) throws {
+        let infoURL = appURL.appendingPathComponent("Contents/Info.plist")
+        guard let info = NSDictionary(contentsOf: infoURL) as? [String: Any] else {
+            throw updaterError("The downloaded app bundle is missing Info.plist.")
+        }
+
+        guard let currentBundleID = Bundle.main.bundleIdentifier else {
+            throw updaterError("The current app bundle identifier is missing.")
+        }
+        let downloadedBundleID = info["CFBundleIdentifier"] as? String
+        guard downloadedBundleID == currentBundleID else {
+            throw updaterError("The downloaded app bundle does not match Kafka Launcher.")
+        }
+
+        let downloadedVersion = (info["CFBundleShortVersionString"] as? String)?
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        let currentVersion = (Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0.0")
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+
+        guard let downloadedVersion,
+              downloadedVersion.compare(currentVersion, options: .numeric) == .orderedDescending else {
+            throw updaterError("The downloaded app is not newer than the current app.")
+        }
+
+        if let minimumSystemVersion = info["LSMinimumSystemVersion"] as? String {
+            let currentOS = ProcessInfo.processInfo.operatingSystemVersion
+            let currentSystemVersion = "\(currentOS.majorVersion).\(currentOS.minorVersion).\(currentOS.patchVersion)"
+            guard minimumSystemVersion.compare(currentSystemVersion, options: .numeric) != .orderedDescending else {
+                throw updaterError("The downloaded app requires macOS \(minimumSystemVersion), but this Mac is running macOS \(currentSystemVersion).")
+            }
+        }
+    }
+
+    private static func updaterError(_ message: String) -> NSError {
+        NSError(domain: "Updater", code: 1, userInfo: [NSLocalizedDescriptionKey: message])
     }
     
     // MARK: - URLSessionDownloadDelegate

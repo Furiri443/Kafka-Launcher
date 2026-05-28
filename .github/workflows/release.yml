@@ -44,13 +44,16 @@ jobs:
 
       - name: Build Intel (x86_64)
         run: |
+          rm -rf "$RUNNER_TEMP/kafka-launcher-build"
+          mkdir -p "$RUNNER_TEMP/kafka-launcher-build"
           xcodebuild archive \
             -project Kafka-Launcher.xcodeproj \
             -scheme "Kafka-Launcher" \
             -configuration Release \
-            -archivePath build/Kafka-Launcher-x86_64.xcarchive \
+            -archivePath "$RUNNER_TEMP/kafka-launcher-build/Kafka-Launcher-x86_64.xcarchive" \
             -destination "generic/platform=macOS" \
             ARCHS="x86_64" \
+            MACOSX_DEPLOYMENT_TARGET=14.0 \
             ONLY_ACTIVE_ARCH=NO \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
@@ -62,9 +65,10 @@ jobs:
             -project Kafka-Launcher.xcodeproj \
             -scheme "Kafka-Launcher" \
             -configuration Release \
-            -archivePath build/Kafka-Launcher-arm64.xcarchive \
+            -archivePath "$RUNNER_TEMP/kafka-launcher-build/Kafka-Launcher-arm64.xcarchive" \
             -destination "generic/platform=macOS" \
             ARCHS="arm64" \
+            MACOSX_DEPLOYMENT_TARGET=14.0 \
             ONLY_ACTIVE_ARCH=NO \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
@@ -76,9 +80,10 @@ jobs:
             -project Kafka-Launcher.xcodeproj \
             -scheme "Kafka-Launcher" \
             -configuration Release \
-            -archivePath build/Kafka-Launcher-Universal.xcarchive \
+            -archivePath "$RUNNER_TEMP/kafka-launcher-build/Kafka-Launcher-Universal.xcarchive" \
             -destination "generic/platform=macOS" \
             ARCHS="x86_64 arm64" \
+            MACOSX_DEPLOYMENT_TARGET=14.0 \
             ONLY_ACTIVE_ARCH=NO \
             CODE_SIGN_IDENTITY="-" \
             CODE_SIGNING_REQUIRED=NO \
@@ -88,15 +93,15 @@ jobs:
         run: |
           # Package each built app using macOS ditto command to preserve permissions and symlinks
           ditto -c -k --sequesterRsrc --keepParent \
-            build/Kafka-Launcher-x86_64.xcarchive/Products/Applications/Kafka-Launcher.app \
+            "$RUNNER_TEMP/kafka-launcher-build/Kafka-Launcher-x86_64.xcarchive/Products/Applications/Kafka-Launcher.app" \
             Kafka-Launcher-Intel-x86_64.zip
             
           ditto -c -k --sequesterRsrc --keepParent \
-            build/Kafka-Launcher-arm64.xcarchive/Products/Applications/Kafka-Launcher.app \
+            "$RUNNER_TEMP/kafka-launcher-build/Kafka-Launcher-arm64.xcarchive/Products/Applications/Kafka-Launcher.app" \
             Kafka-Launcher-AppleSilicon-arm64.zip
             
           ditto -c -k --sequesterRsrc --keepParent \
-            build/Kafka-Launcher-Universal.xcarchive/Products/Applications/Kafka-Launcher.app \
+            "$RUNNER_TEMP/kafka-launcher-build/Kafka-Launcher-Universal.xcarchive/Products/Applications/Kafka-Launcher.app" \
             Kafka-Launcher-Universal.zip
 
       - name: Upload Build Artifacts (Actions Run)

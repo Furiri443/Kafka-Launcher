@@ -534,10 +534,16 @@ class GameManager {
         let prefix = WineManager.defaultPrefixPath
         let launchLog = LaunchLogger(gameType: type)
         
-        let currentDistroId = settings.selectedWineDistribution
-        let currentDistro = WineManager.distributions.first { $0.id == currentDistroId }
-        let renderBackend = currentDistro?.renderBackend ?? "dxmt"
-        let useDXMT = config.enableDXMT && renderBackend == "dxmt"
+        let wineSourceMode = config.useGlobalWineSettings ? settings.wineSourceMode : config.wineSourceMode
+        let currentDistroId = config.useGlobalWineSettings ? settings.selectedWineDistribution : config.wineDistribution
+        let currentDistro: WineDistribution?
+        if wineSourceMode == .github {
+            currentDistro = WineManager.distributions.first { $0.id == currentDistroId }
+        } else {
+            currentDistro = nil
+        }
+        let renderBackend = currentDistro?.renderBackend ?? (wineSourceMode == .custom ? "custom" : "dxmt")
+        let useDXMT = config.enableDXMT && (renderBackend == "dxmt" || wineSourceMode == .custom)
 
         do {
             // Apply proper wine settings before launch
@@ -548,6 +554,7 @@ class GameManager {
             launchLog.info("Install dir: \(installDir)")
             launchLog.info("Wine binary: \(wineManager.getWineBinary())")
             launchLog.info("Wine mode: \(settings.config(for: type).useGlobalWineSettings ? "Global" : "Per-game custom")")
+            launchLog.info("Wine source: \(wineSourceMode.rawValue) (distribution: \(currentDistroId))")
             launchLog.info("Wine prefix: \(prefix)")
             launchLog.info("Render backend: \(renderBackend) (DXMT enabled: \(useDXMT))")
             launchLog.info("════════════════════════════════════════")
@@ -600,7 +607,7 @@ class GameManager {
             // PHASE 1: Pre-Launch Setup (Registry)
             // ═══════════════════════════════════════════
 
-            // Build one registry file so Wine only starts regedit once.
+            // Build one registry file so Wine imports launch settings once.
             var registryEntries: [RegistryManager.Entry] = []
 
             launchLog.info("[Phase 1] Preparing launch registry (retina=\(config.retinaMode), leftCmd=\(config.leftCommandIsCtrl))")
@@ -766,12 +773,10 @@ class GameManager {
             env["MTL_DEBUG_LAYER"] = "0"
             env["MTL_SHADER_VALIDATION"] = "0"
 
-            // Env is determined by wine.attributes.renderBackend
-            // useDXMT = config.enableDXMT && renderBackend == "dxmt"
+            // Env is determined by the effective Wine render backend.
             if useDXMT {
                 // DXMT mode
                 env["WINEDLLOVERRIDES"] = ""
-                env["WINEMSYNC"] = "1"
                 env["DXMT_LOG_PATH"] = baseDir
                 env["GST_PLUGIN_FEATURE_RANK"] = "atdec:MAX,avdec_h264:MAX"
 
@@ -794,9 +799,13 @@ class GameManager {
                 env["WINEESYNC"] = "1"
             }
 
-            // WINEMSYNC (if not already set by DXMT block)
-            if config.winemsync && env["WINEMSYNC"] == nil {
+            // WINEMSYNC is optional because stale non-msync wineserver processes can
+            // make Wine abort before the game starts.
+            if config.winemsync {
                 env["WINEMSYNC"] = "1"
+                env.removeValue(forKey: "WINEESYNC")
+            } else if env["WINEESYNC"] == nil {
+                env["WINEESYNC"] = "1"
             }
 
             // Proxy
@@ -834,6 +843,11 @@ class GameManager {
             }
             launchLog.info("[Phase 3] Wine log file: \(logFile)")
             launchLog.info("[Phase 3] Executing wine \(batchPath!)...")
+
+            if env["WINEMSYNC"] != nil {
+                launchLog.info("[Phase 3] Ensuring no stale wineserver before WINEMSYNC launch...")
+                try? await wineManager.waitForWineServerOff(prefix: prefix)
+            }
 
             // 3e. Execute via Wine (cmd /c config.bat)
             // If steamPatch is enabled for Genshin, use steam.exe as launcher

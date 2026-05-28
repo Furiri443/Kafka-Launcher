@@ -441,10 +441,15 @@ class WineManager {
         let pfx = prefix ?? Self.defaultPrefixPath
         let wineBin = getWineBinary()
         let env = wineEnvironment(prefix: pfx)
+        let wineRegPath = toWinePath(regFilePath)
 
-        try await runWineProcess(wineBin, arguments: [
-            "regedit", regFilePath
-        ], environment: env)
+        try await ProcessRunner.runChecked(
+            wineBin,
+            arguments: ["reg", "import", wineRegPath],
+            environment: env
+        ) { code in
+            WineError.registryFailed("reg import failed with exit code \(code)")
+        }
 
         try await waitForWineServerOff(prefix: pfx)
     }
