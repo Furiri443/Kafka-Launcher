@@ -20,6 +20,13 @@ class WineManager {
     static let logsPath = basePath + "/logs"
     static let dxmtPath = basePath + "/dxmt"
     static let sidecarPath = basePath + "/sidecar"
+    static let protonExtrasFiles = [
+        "steam64.exe",
+        "steam32.exe",
+        "lsteamclient64.dll",
+        "lsteamclient32.dll",
+    ]
+    private static let devProjectRoot = ((#filePath as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent
 
     // MARK: - Wine Distributions
 
@@ -534,6 +541,18 @@ class WineManager {
         )
     }
 
+    func killWineServer(prefix: String? = nil) async throws {
+        let pfx = prefix ?? Self.defaultPrefixPath
+        let wineserverBin = getWineServerBinary()
+        guard fileManager.isExecutableFile(atPath: wineserverBin) else { return }
+        try await ProcessRunner.run(
+            wineserverBin,
+            arguments: ["-k"],
+            environment: ["WINEPREFIX": pfx]
+        )
+        try await waitForWineServerOff(prefix: pfx)
+    }
+
     // MARK: - Open CMD Window
 
     func openCmdWindow(gameDir: String, prefix: String? = nil) async throws {
@@ -598,6 +617,46 @@ class WineManager {
         let chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
         let suffix = String((0..<7).map { _ in chars.randomElement()! })
         return "DESKTOP-" + suffix
+    }
+
+    func ensureProtonExtrasAvailable() throws -> Bool {
+        let fm = FileManager.default
+        let destDir = Self.sidecarPath + "/protonextras"
+        try fm.createDirectory(atPath: destDir, withIntermediateDirectories: true)
+
+        let sourceCandidates = [
+            Bundle.main.resourceURL?.appendingPathComponent("sidecar/protonextras", isDirectory: true),
+            URL(fileURLWithPath: Self.devProjectRoot).appendingPathComponent("sidecar/protonextras", isDirectory: true),
+        ].compactMap { $0 }
+
+        guard let sourceDir = sourceCandidates.first(where: { fm.fileExists(atPath: $0.path) }) else {
+            return false
+        }
+
+        for file in Self.protonExtrasFiles {
+            let srcPath = sourceDir.appendingPathComponent(file).path
+            let dstPath = destDir + "/" + file
+
+            guard fm.fileExists(atPath: srcPath) else { continue }
+
+            let shouldCopy: Bool
+            if !fm.fileExists(atPath: dstPath) {
+                shouldCopy = true
+            } else {
+                let srcSize = (try? fm.attributesOfItem(atPath: srcPath)[.size] as? NSNumber)?.int64Value
+                let dstSize = (try? fm.attributesOfItem(atPath: dstPath)[.size] as? NSNumber)?.int64Value
+                shouldCopy = srcSize != dstSize
+            }
+
+            if shouldCopy {
+                if fm.fileExists(atPath: dstPath) {
+                    try fm.removeItem(atPath: dstPath)
+                }
+                try fm.copyItem(atPath: srcPath, toPath: dstPath)
+            }
+        }
+
+        return true
     }
 
     private func downloadFile(

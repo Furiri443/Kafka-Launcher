@@ -440,6 +440,7 @@ struct GameSettingsSheet: View {
 
                     settingsGroup("Advanced") {
                         Toggle("WINEMSYNC", isOn: configBinding(\.winemsync))
+                        Toggle("Timeout Fix", isOn: configBinding(\.timeoutFix))
                         Toggle("Steam Emulation", isOn: configBinding(\.useSteamPatch))
                         Toggle("ReShade", isOn: configBinding(\.enableReShade))
                     }

@@ -43,6 +43,7 @@ struct GameConfig: Codable, Equatable {
     var useSteamPatch: Bool = false     // Steam emulation DLLs
     var enableReShade: Bool = false
     var workaround3: Bool = false       // workaround3 tag disable
+    var timeoutFix: Bool = false        // WINE_ENABLE_TIMEOUT_FIX=1
 
     // DXMT environment
     var winemsync: Bool = true          // WINEMSYNC=1
@@ -82,7 +83,7 @@ struct GameConfig: Codable, Equatable {
         case customResolution, resolutionWidth, resolutionHeight
         case proxyEnabled, proxyHost, blockNetwork
         case usePrivateServer, useFireflyPS, privateServerAddress, customProxyPath, privateServerAcceptRun
-        case useSteamPatch, enableReShade, workaround3
+        case useSteamPatch, enableReShade, workaround3, timeoutFix
         case winemsync
         case predownloadedAll
     }
@@ -116,6 +117,7 @@ struct GameConfig: Codable, Equatable {
         self.useSteamPatch = false
         self.enableReShade = false
         self.workaround3 = false
+        self.timeoutFix = false
         self.winemsync = true
         self.predownloadedAll = false
     }
@@ -156,6 +158,7 @@ struct GameConfig: Codable, Equatable {
         self.useSteamPatch = try container.decodeIfPresent(Bool.self, forKey: .useSteamPatch) ?? false
         self.enableReShade = try container.decodeIfPresent(Bool.self, forKey: .enableReShade) ?? false
         self.workaround3 = try container.decodeIfPresent(Bool.self, forKey: .workaround3) ?? false
+        self.timeoutFix = try container.decodeIfPresent(Bool.self, forKey: .timeoutFix) ?? false
         self.winemsync = try container.decodeIfPresent(Bool.self, forKey: .winemsync) ?? true
         self.predownloadedAll = try container.decodeIfPresent(Bool.self, forKey: .predownloadedAll) ?? false
     }

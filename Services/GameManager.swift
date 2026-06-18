@@ -544,11 +544,14 @@ class GameManager {
         }
         let renderBackend = currentDistro?.renderBackend ?? (wineSourceMode == .custom ? "custom" : "dxmt")
         let useDXMT = config.enableDXMT && (renderBackend == "dxmt" || wineSourceMode == .custom)
+        let useSteamPatch = config.useSteamPatch || type == .zenlessZoneZero
+        let useTimeoutFix = config.timeoutFix || type == .zenlessZoneZero
 
         do {
             // Apply proper wine settings before launch
             applyWineSettings(for: type)
-            
+            try? await wineManager.killWineServer(prefix: prefix)
+
             launchLog.info("════════════════════════════════════════")
             launchLog.info("Launching \(type.displayName)")
             launchLog.info("Install dir: \(installDir)")
@@ -557,6 +560,8 @@ class GameManager {
             launchLog.info("Wine source: \(wineSourceMode.rawValue) (distribution: \(currentDistroId))")
             launchLog.info("Wine prefix: \(prefix)")
             launchLog.info("Render backend: \(renderBackend) (DXMT enabled: \(useDXMT))")
+            launchLog.info("Steam emulation active: \(useSteamPatch)")
+            launchLog.info("Timeout fix active: \(useTimeoutFix)")
             launchLog.info("════════════════════════════════════════")
 
             // 0. Start FireflyPS Server and Proxy if enabled
@@ -711,15 +716,17 @@ class GameManager {
                 }
             }
 
-            // 2d. Place Steam emulation DLLs for Genshin
-            // HSR and ZZZ do NOT use steam emulation
-            if type == .genshinImpact && config.useSteamPatch {
+            // 2d. Place Steam support sidecars for Genshin and ZZZ.
+            // yaagl installs these unconditionally during patching; launching via
+            // steam.exe remains controlled by the user-facing Steam Emulation toggle.
+            if type == .genshinImpact || type == .zenlessZoneZero {
+                let sidecarReady = (try? wineManager.ensureProtonExtrasAvailable()) ?? false
                 let system32 = prefix + "/drive_c/windows/system32"
                 let syswow64 = prefix + "/drive_c/windows/syswow64"
                 let sidecarDir = WineManager.sidecarPath + "/protonextras"
                 let fm = FileManager.default
 
-                if fm.fileExists(atPath: sidecarDir) {
+                if sidecarReady && fm.fileExists(atPath: sidecarDir) {
                     let steamFiles: [(src: String, dst: String)] = [
                         ("steam64.exe", system32 + "/steam.exe"),
                         ("steam32.exe", syswow64 + "/steam.exe"),
@@ -826,6 +833,8 @@ class GameManager {
                 env["GST_PLUGIN_FEATURE_RANK"] = "atdec:MAX,avdec_h264:MAX"
             }
 
+            env["WINE_ENABLE_TIMEOUT_FIX"] = useTimeoutFix ? "1" : "0"
+
             // 3c. Apply network blocking if configured
             if config.blockNetwork {
                 launchLog.info("[Phase 3] Applying network blocking...")
@@ -855,7 +864,7 @@ class GameManager {
             let winBatchPath = wineManager.toWinePath(batchPath!)
             let winExePath = wineManager.toWinePath(installDir + "/" + type.executable)
             let process: Process
-            if config.useSteamPatch && type == .genshinImpact {
+            if useSteamPatch && (type == .genshinImpact || type == .zenlessZoneZero) {
                 // Launch via steam.exe
                 process = try await wineManager.launchGame(
                     executable: "C:\\windows\\system32\\steam.exe",
@@ -1014,11 +1023,11 @@ class GameManager {
             let winExePath = wineManager.toWinePath(gameDir + "/" + executable)
             return "@echo off\ncd \"%~dp0\"\ncd /d \"\(winGameDir)\"\n\"\(winJadeitePath)\" \"\(winExePath)\" -- -disable-gpu-skinning"
         } else if type == .zenlessZoneZero {
-            // ZZZ: copy HoYoKProtect.sys + resolution as CLI args
+            // ZZZ: match yaagl launch flow, including HoYoKProtect copy.
             let protectSrc = wineManager.toWinePath(gameDir + "/HoYoKProtect.sys")
             var args = ""
             if config.customResolution {
-                args = " -screen-width \(config.resolutionWidth) -screen-height \(config.resolutionHeight) -screen-fullscreen 0"
+                args += " -screen-width \(config.resolutionWidth) -screen-height \(config.resolutionHeight) -screen-fullscreen 0"
             }
             return "@echo off\ncd \"%~dp0\"\ncopy \"\(protectSrc)\" \"%WINDIR%\\system32\\\"\ncd /d \"\(winGameDir)\"\n\"\(wineManager.toWinePath(gameDir + "/" + executable))\"\(args)"
         } else {
@@ -1028,8 +1037,6 @@ class GameManager {
         }
     }
 
-
-    // MARK: - Files to Remove per game
 
     private static func filesToRemove(for type: GameType) -> [String] {
         switch type {
@@ -1043,16 +1050,13 @@ class GameManager {
         case .honkaiStarRail:
             // Files to remove for Honkai Star Rail
             return [
-                "StarRail_Data/upload_crash.exe",
-                "StarRail_Data/Plugins/crashreport.exe",
-                "StarRail_Data/Plugins/vulkan-1.dll",
+                "StarRail_Data/Plugins/x86_64/crashreport.exe",
+                "StarRail_Data/Plugins/x86_64/vulkan-1.dll",
             ]
         case .zenlessZoneZero:
             // Files to remove for Zenless Zone Zero
             return [
-                "ZenlessZoneZero_Data/upload_crash.exe",
-                "ZenlessZoneZero_Data/Plugins/crashreport.exe",
-                "ZenlessZoneZero_Data/Plugins/vulkan-1.dll",
+                "ZenlessZoneZero_Data/Plugins/x86_64/vulkan-1.dll",
             ]
         }
     }
@@ -1134,31 +1138,6 @@ class GameManager {
             "[\(key)]",
             "\"MIHOYOSDK_WEBVIEW_RENDER_METHOD_h1573598267\"=-"
         ]
-
-        // Query existing registry for HOYO_WEBVIEW_RENDER_METHOD_ABTEST_ keys
-        let queryResult = try? await wineManager.exec(
-            program: "reg",
-            arguments: ["query", key],
-            prefix: prefix,
-            logFile: WineManager.basePath + "/fix_webview.log"
-        )
-
-        if queryResult == 0 {
-            let logPath = WineManager.basePath + "/fix_webview.log"
-            if let logData = FileManager.default.contents(atPath: logPath),
-               let output = String(data: logData, encoding: .utf8) {
-                for line in output.split(separator: "\n") {
-                    let trimmed = line.trimmingCharacters(in: .whitespaces)
-                    if trimmed.hasPrefix("HOYO_WEBVIEW_RENDER_METHOD_ABTEST_") {
-                        let abtest = trimmed.split(separator: " ", maxSplits: 1).first.map(String.init) ?? ""
-                        if !abtest.isEmpty {
-                            regLines.append("\"\(abtest)\"=-")
-                        }
-                    }
-                }
-            }
-            try? FileManager.default.removeItem(atPath: logPath)
-        }
 
         // Write and import the reg file
         let regContent = regLines.joined(separator: "\r\n")
