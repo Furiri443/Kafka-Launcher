@@ -9,19 +9,26 @@ struct GameDetailView: View {
     private var game: GameInfo { gameManager.currentGame }
     private var state: GameState { gameManager.currentState }
     private var type: GameType { gameManager.selectedGame }
+    private var shouldShowGameHeader: Bool {
+        guard let launcherContent = game.launcherContent else { return true }
+        return launcherContent.backgroundURL == nil
+            && launcherContent.backgroundVideoURL == nil
+            && launcherContent.themeURL == nil
+    }
 
     var body: some View {
         ZStack {
             backgroundLayer
 
-            // Top-left game info
-            VStack(alignment: .leading) {
-                gameHeader
-                Spacer()
+            if shouldShowGameHeader {
+                VStack(alignment: .leading) {
+                    gameHeader
+                    Spacer()
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(28)
+                .padding(.top, 16)
             }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(28)
-            .padding(.top, 16)
 
             // Bottom bar
             VStack {
@@ -48,6 +55,16 @@ struct GameDetailView: View {
 
                 if let bgURL = game.launcherContent?.backgroundURL {
                     CachedAsyncImage(url: bgURL)
+                        .transition(.opacity)
+                }
+
+                if let bgVideoURL = game.launcherContent?.backgroundVideoURL {
+                    LoopingVideoBackground(url: bgVideoURL)
+                        .transition(.opacity)
+                }
+
+                if let themeURL = game.launcherContent?.themeURL {
+                    CachedAsyncImage(url: themeURL)
                         .transition(.opacity)
                 }
 

@@ -24,8 +24,20 @@ actor GameServerAPI {
             from: data
         )
 
-        guard let game = response.data.game_info_list.first(where: { $0.game.biz == gameInfo.type.bizId }),
-              let bg = game.backgrounds.first else {
+        guard let game = response.data.game_info_list.first(where: { $0.game.biz == gameInfo.type.bizId }) else {
+            throw APIError.gameNotFound(gameInfo.type.bizId)
+        }
+
+        let sortedBackgrounds = game.backgrounds.sorted { lhs, rhs in
+            let lhsHasVideo = lhs.video?.url?.isEmpty == false
+            let rhsHasVideo = rhs.video?.url?.isEmpty == false
+            if lhsHasVideo != rhsHasVideo {
+                return lhsHasVideo && !rhsHasVideo
+            }
+            return lhs.id < rhs.id
+        }
+
+        guard let bg = sortedBackgrounds.first else {
             throw APIError.gameNotFound(gameInfo.type.bizId)
         }
 
