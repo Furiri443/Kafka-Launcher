@@ -544,8 +544,9 @@ class GameManager {
         }
         let renderBackend = currentDistro?.renderBackend ?? (wineSourceMode == .custom ? "custom" : "dxmt")
         let useDXMT = config.enableDXMT && (renderBackend == "dxmt" || wineSourceMode == .custom)
-        let useSteamPatch = config.useSteamPatch || type == .zenlessZoneZero
-        let useTimeoutFix = config.timeoutFix || type == .zenlessZoneZero
+        let useSteamPatch = config.useSteamPatch || type == .genshinImpact || type == .zenlessZoneZero
+        let useTimeoutFix = config.timeoutFix || type == .genshinImpact || type == .zenlessZoneZero
+        let preferESync = type == .genshinImpact
 
         do {
             // Apply proper wine settings before launch
@@ -562,6 +563,7 @@ class GameManager {
             launchLog.info("Render backend: \(renderBackend) (DXMT enabled: \(useDXMT))")
             launchLog.info("Steam emulation active: \(useSteamPatch)")
             launchLog.info("Timeout fix active: \(useTimeoutFix)")
+            launchLog.info("Preferred sync mode: \(preferESync ? "esync" : (config.winemsync ? "msync" : "esync"))")
             launchLog.info("════════════════════════════════════════")
 
             // 0. Start FireflyPS Server and Proxy if enabled
@@ -804,6 +806,7 @@ class GameManager {
                     env["DXMT_ENABLE_NVEXT"] = "1"
                 } else if type == .genshinImpact {
                     env["DXMT_CONFIG"] = "d3d11.preferredMaxFrameRate=60;"
+                    env["WINEESYNC"] = "1"
                 }
             } else {
                 // Non-DXMT mode
@@ -812,7 +815,10 @@ class GameManager {
 
             // WINEMSYNC is optional because stale non-msync wineserver processes can
             // make Wine abort before the game starts.
-            if config.winemsync {
+            if preferESync {
+                env.removeValue(forKey: "WINEMSYNC")
+                env["WINEESYNC"] = "1"
+            } else if config.winemsync {
                 env["WINEMSYNC"] = "1"
                 env.removeValue(forKey: "WINEESYNC")
             } else if env["WINEESYNC"] == nil {
@@ -852,7 +858,11 @@ class GameManager {
                 launchLog.info("  \(key)=\(value)")
             }
             launchLog.info("[Phase 3] Wine log file: \(logFile)")
-            launchLog.info("[Phase 3] Executing wine \(batchPath!)...")
+            if useSteamPatch && (type == .genshinImpact || type == .zenlessZoneZero) {
+                launchLog.info("[Phase 3] Executing wine C:\\windows\\system32\\steam.exe \(wineManager.toWinePath(installDir + "/" + type.executable))...")
+            } else {
+                launchLog.info("[Phase 3] Executing wine \(batchPath!)...")
+            }
 
             if env["WINEMSYNC"] != nil {
                 launchLog.info("[Phase 3] Ensuring no stale wineserver before WINEMSYNC launch...")
