@@ -150,7 +150,10 @@ struct GameConfig: Codable, Equatable {
         self.blockNetwork = try container.decodeIfPresent(Bool.self, forKey: .blockNetwork) ?? false
         
         self.usePrivateServer = try container.decodeIfPresent(Bool.self, forKey: .usePrivateServer) ?? false
-        self.useFireflyPS = try container.decodeIfPresent(Bool.self, forKey: .useFireflyPS) ?? false
+        // FireflyPS is currently unavailable (FireflyGo_Local_Archive repo / prebuilt
+        // PS Server assets no longer exist on the Gitea instance). Force it off so a
+        // stale saved config can't trigger the broken download path on launch.
+        self.useFireflyPS = false
         self.privateServerAddress = try container.decodeIfPresent(String.self, forKey: .privateServerAddress) ?? "127.0.0.1:21000"
         self.customProxyPath = try container.decodeIfPresent(String.self, forKey: .customProxyPath) ?? ""
         self.privateServerAcceptRun = try container.decodeIfPresent(String.self, forKey: .privateServerAcceptRun) ?? ""

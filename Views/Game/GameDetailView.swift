@@ -390,66 +390,23 @@ struct GameSettingsSheet: View {
                         
                         Divider().opacity(0.3)
                         
-                        Toggle("Run FireflyPS (Local Proxy Helper)", isOn: Binding(
-                            get: { gameManager.settings.config(for: gameType).useFireflyPS },
-                            set: { newValue in
-                                gameManager.settings.updateConfig(for: gameType) { config in
-                                    config.useFireflyPS = newValue
-                                    if newValue {
-                                        config.usePrivateServer = false
-                                    }
-                                }
-                                gameManager.settings.save()
-                            }
-                        ))
-                        
+                        // FireflyPS is currently unavailable: the FireflyGo_Local_Archive
+                        // repository / prebuilt PS Server assets no longer exist on the
+                        // Gitea instance, so this option is disabled and forced off.
+                        Toggle("Run FireflyPS (Local Proxy Helper) — Unavailable", isOn: .constant(false))
+                            .disabled(true)
+                            .opacity(0.5)
+
+                        Text("FireflyPS is temporarily unavailable (server assets not published).")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+
                         Toggle("Play on Private Server (Direct Connection)", isOn: configBinding(\.usePrivateServer))
-                            .disabled(gameManager.settings.config(for: gameType).useFireflyPS)
-                            .opacity(gameManager.settings.config(for: gameType).useFireflyPS ? 0.5 : 1.0)
-                        
-                        if gameManager.settings.config(for: gameType).useFireflyPS {
-                            TextField("Private Server Address", text: .constant("127.0.0.1:21000"))
-                                .disabled(true)
-                                .foregroundStyle(.secondary)
-                        } else if gameManager.settings.config(for: gameType).usePrivateServer {
+
+                        if gameManager.settings.config(for: gameType).usePrivateServer {
                             TextField("Private Server Address", text: configBinding(\.privateServerAddress))
                         }
-                        
-                        if gameManager.settings.config(for: gameType).useFireflyPS {
-                            TextField("Accept Run Code", text: configBinding(\.privateServerAcceptRun))
-                            
-                            HStack {
-                                Button {
-                                    let path = gameManager.proxyDirectoryPath
-                                    // Ensure directory exists so Finder can open it
-                                    try? FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: true)
-                                    NSWorkspace.shared.open(URL(fileURLWithPath: path))
-                                } label: {
-                                    Label("Show in Finder", systemImage: "folder")
-                                }
-                                .controlSize(.small)
-                                .buttonStyle(.bordered)
-                                
-                                Button {
-                                    Task {
-                                        do {
-                                            try await gameManager.downloadProxyArchive()
-                                        } catch {
-                                            print("Failed to download proxy: \(error)")
-                                        }
-                                    }
-                                } label: {
-                                    Label("Download/Update Proxy", systemImage: "arrow.down.circle")
-                                }
-                                .controlSize(.small)
-                                .buttonStyle(.borderedProminent)
-                            }
-                            
-                            Text("Note: The proxy server is downloaded and run automatically on game launch. Click 'Show in Finder' to reveal the folder.")
-                                .font(.caption)
-                                .foregroundStyle(.secondary)
-                        }
-                        
+
                         Divider().opacity(0.3)
                         
                         Toggle("Block Network (Anti-Cheat)", isOn: configBinding(\.blockNetwork))

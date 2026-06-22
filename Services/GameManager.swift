@@ -147,21 +147,17 @@ class GameManager {
         
         let proxyPath = folderPath + "/firefly-go-proxy"
         let psPath = folderPath + "/" + (isArm ? "firefly-go_mac_arm" : "firefly-go_mac_x86")
-        
-        // If either is missing, download
+
+        // Only the FireflyGo_Proxy binary is checked/downloaded. The PS Server
+        // (FireflyGo_Local_Archive) repo no longer exists on Gitea, so we no
+        // longer probe or fetch the PS Server binary here.
         if !fm.fileExists(atPath: proxyPath) {
             print("[Proxy] Proxy binary not found. Downloading...")
             try await downloadProxy()
         }
-        
-        if !fm.fileExists(atPath: psPath) {
-            print("[Proxy] PS Server binary not found. Downloading...")
-            try await downloadPSServer()
-        }
-        
+
         // Set permissions again
         try? fm.setAttributes([.posixPermissions: 0o755], ofItemAtPath: proxyPath)
-        try? fm.setAttributes([.posixPermissions: 0o755], ofItemAtPath: psPath)
         
         return (proxyPath: proxyPath, psPath: psPath)
     }
