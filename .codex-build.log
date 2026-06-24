@@ -1,0 +1,1112 @@
+2026-06-25 00:12:24.712 xcodebuild[8536:133062]  DVTFilePathFSEvents: Failed to start fs event stream.
+2026-06-25 00:12:25.953 xcodebuild[8536:133063] CoreSimulatorService connection became invalid.  Simulator services will no longer be available.
+2026-06-25 00:12:25.953 xcodebuild[8536:133063] Logging connecton invalid: <OS_xpc_error: <dictionary: 0x7ff847549600> { count = 1, transaction: 0, voucher = 0x0, contents =
+	"XPCErrorDescription" => <string: 0x7ff847549770> { string cache = 0x0, length = 18, contents = "Connection invalid" }
+}>
+2026-06-25 00:12:25.954 xcodebuild[8536:133063] Error opening log file (/Users/furiri/Library/Logs/CoreSimulator/CoreSimulator.com.apple.dt.xcodebuild.log): Operation not permitted
+[-[SimServiceContext sendRequest:]:1751] ERROR : Unable to deliver request ({
+    "developer_dir" = "/Applications/Xcode.app/Contents/Developer";
+    request = "set_developer_dir";
+}) because we are not connected to CoreSimulatorService.
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project Kafka-Launcher.xcodeproj -scheme Kafka-Launcher -destination platform=macOS -derivedDataPath /tmp/KafkaLauncherDerivedData build
+
+[-[SimDeviceType initWithBundle:error:]:241] ERROR : Error Domain=com.apple.CoreSimulator.SimError Code=402 "Unable to determine supported architectures for device type (/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Vision Pro (at 2732x2048).simdevicetype/Contents/Resources/profile.plist)" UserInfo={NSLocalizedDescription=Unable to determine supported architectures for device type (/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Vision Pro (at 2732x2048).simdevicetype/Contents/Resources/profile.plist)}
+[-[SimDeviceType initWithBundle:error:]:241] ERROR : Error Domain=com.apple.CoreSimulator.SimError Code=402 "Unable to determine supported architectures for device type (/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Vision Pro.simdevicetype/Contents/Resources/profile.plist)" UserInfo={NSLocalizedDescription=Unable to determine supported architectures for device type (/Library/Developer/CoreSimulator/Profiles/DeviceTypes/Apple Vision Pro.simdevicetype/Contents/Resources/profile.plist)}
+2026-06-25 00:12:26.083 xcodebuild[8536:133061] [MT] DVTAssertions: Warning in DVTFrameworks/DVTFoundation/FileTypes/DVTFileDataTypeDetection.m:80
+Details:  detectedTypeIdentifier (com.apple.xml-property-list) does not conform to matchedTypeIdentifier in MagicFileDataTypeDetector extenson com.apple.property-list. When both are specified, this conformance is required unless overridden by setting allowNonInheritance. extension.identifier:Xcode.MagicFileDataTypeDetector.XMLPlist
+Object:   <DVTFileDataTypeDetectionMagicCache: 0x7fe64e10fa90>
+Method:   -initWithExtension:
+Thread:   <_NSMainThread: 0x7fe647405900>{number = 1, name = main}
+Please file a bug at https://feedbackassistant.apple.com with this warning message and any useful information you can provide.
+2026-06-25 00:12:26.086 xcodebuild[8536:133061] [MT] DVTAssertions: Warning in DVTFrameworks/DVTFoundation/FileTypes/DVTFileDataTypeDetection.m:80
+Details:  detectedTypeIdentifier (com.apple.binary-property-list) does not conform to matchedTypeIdentifier in MagicFileDataTypeDetector extenson com.apple.property-list. When both are specified, this conformance is required unless overridden by setting allowNonInheritance. extension.identifier:Xcode.MagicFileDataTypeDetector.BinaryPlist
+Object:   <DVTFileDataTypeDetectionMagicCache: 0x7fe64ddd24f0>
+Method:   -initWithExtension:
+Thread:   <_NSMainThread: 0x7fe647405900>{number = 1, name = main}
+Please file a bug at https://feedbackassistant.apple.com with this warning message and any useful information you can provide.
+[-[SimServiceContext initWithDeveloperDir:connectionType:error:]:432] WARN  : Unable to discover any Simulator runtimes. Developer Directory is /Applications/Xcode.app/Contents/Developer.
+[-[SimDiskImageManager init]:175] ERROR : Could not kickstart simdiskimaged; SimDiskImageManager services will not be available: Error Domain=NSPOSIXErrorDomain Code=53 "Software caused connection abort" UserInfo={NSLocalizedDescription=Error returned in reply from CoreSimulatorService: Connection invalid}
+[-[SimDiskImageManager _onQueue_checkConnection:]:239] ERROR : simdiskimaged returned error (invalid), marking disconnected.
+[-[SimDiskImageManager _onQueue_checkConnection:]:239] ERROR : simdiskimaged returned error (invalid), marking disconnected.
+[-[SimServiceContext initWithDeveloperDir:connectionType:error:]_block_invoke:468] ERROR : Could not get list of trusted mount directories: Error Domain=com.apple.CoreSimulator.SimError Code=410 "The service used to manage runtime disk images (simdiskimaged) crashed or is not responding" UserInfo={NSLocalizedDescription=The service used to manage runtime disk images (simdiskimaged) crashed or is not responding}
+[-[SimServiceContext sendRequest:reply:error:]:1771] ERROR : Unable to deliver request ({
+    request = "notification_subscription";
+    "set_path" = "/Users/furiri/Library/Developer/CoreSimulator/Devices";
+}) because we are not connected to CoreSimulatorService.
+2026-06-25 00:12:26.228 xcodebuild[8536:133062] Error Domain=NSPOSIXErrorDomain Code=61 "Connection refused" UserInfo={NSLocalizedDescription=CoreSimulatorService connection became invalid.  Simulator services will no longer be available.}
+[-[SimServiceContext sendRequest:reply:error:]:1771] ERROR : Unable to deliver request ({
+    request = "notification_subscription";
+    "set_path" = "/Users/furiri/Library/Developer/CoreSimulator/Devices";
+}) because we are not connected to CoreSimulatorService.
+2026-06-25 00:12:26.229 xcodebuild[8536:133062]  IDESimulatorAvailability: startObservingSimulatorUpdates() FAILED to register SimDeviceSet observer
+2026-06-25 00:12:26.229 xcodebuild[8536:133063] Error Domain=NSPOSIXErrorDomain Code=61 "Connection refused" UserInfo={NSLocalizedDescription=CoreSimulatorService connection became invalid.  Simulator services will no longer be available.}
+2026-06-25 00:12:26.229 xcodebuild[8536:133063]  iOSSimulator: [SimServiceContext defaultDeviceSetWithError:] returned nil (Error Domain=NSPOSIXErrorDomain Code=61 "Connection refused" UserInfo={NSLocalizedFailureReason=Failed to subscribe to notifications from CoreSimulatorService., NSLocalizedDescription=Failed to initialize simulator device set., NSUnderlyingError=0x7fe64dec13d0 {Error Domain=NSPOSIXErrorDomain Code=61 "Connection refused" UserInfo={NSLocalizedDescription=CoreSimulatorService connection became invalid.  Simulator services will no longer be available.}}}). Simulator device support disabled.
+2026-06-25 00:12:26.470 xcodebuild[8536:133061] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (1 target)
+    Target 'Kafka-Launcher' in project 'Kafka-Launcher' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -v -E -dM -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -x c -c /dev/null
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/usr/bin/actool --version --output-format xml1
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc --version
+
+ExecuteExternalTool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld -version_details
+
+Build description signature: d54e621860065536579587e79167f023
+Build description path: /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/XCBuildData/d54e621860065536579587e79167f023.xcbuilddata
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk /tmp/KafkaLauncherDerivedData/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher/Kafka-Launcher.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -o /tmp/KafkaLauncherDerivedData/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache
+Failed to create FS event stream. Considering the cache up-to-date.
+
+CpResource /tmp/KafkaLauncherDerivedData/Build/Products/Debug/Kafka-Launcher.app/Contents/Resources/.codex-build.log /Volumes/OCungRoi/PRJ/Kafka-Launcher/.codex-build.log (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /Volumes/OCungRoi/PRJ/Kafka-Launcher/.codex-build.log /tmp/KafkaLauncherDerivedData/Build/Products/Debug/Kafka-Launcher.app/Contents/Resources
+
+ProcessInfoPlistFile /tmp/KafkaLauncherDerivedData/Build/Products/Debug/Kafka-Launcher.app/Contents/Info.plist /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/empty-Kafka-Launcher.plist (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    builtin-infoPlistUtility /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/empty-Kafka-Launcher.plist -producttype com.apple.product-type.application -genpkginfo /tmp/KafkaLauncherDerivedData/Build/Products/Debug/Kafka-Launcher.app/Contents/PkgInfo -expandbuildsettings -platform macosx -additionalcontentfile /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/assetcatalog_generated_info.plist -o /tmp/KafkaLauncherDerivedData/Build/Products/Debug/Kafka-Launcher.app/Contents/Info.plist
+
+SwiftDriver Kafka-Launcher normal x86_64 com.apple.xcode.tools.swift.compiler (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Kafka_Launcher -Onone @/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka-Launcher.SwiftFileList -DDEBUG -default-isolation\=MainActor -enable-bare-slash-regex -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -target x86_64-apple-macos14.0 -g -module-cache-path /tmp/KafkaLauncherDerivedData/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -index-store-path /tmp/KafkaLauncherDerivedData/Index.noindex/DataStore -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 5 -I /tmp/KafkaLauncherDerivedData/Build/Products/Debug -F /tmp/KafkaLauncherDerivedData/Build/Products/Debug -emit-localized-strings -emit-localized-strings-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/KafkaLauncherDerivedData/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -output-file-map /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka-Launcher-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/KafkaLauncherDerivedData/ModuleCache.noindex -sdk-module-cache-path /tmp/KafkaLauncherDerivedData/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/KafkaLauncherDerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka-Launcher_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-generated-files.hmap -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-own-target-headers.hmap -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-project-headers.hmap -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Products/Debug/include -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources/x86_64 -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher-Swift.h -working-directory /Volumes/OCungRoi/PRJ/Kafka-Launcher -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal x86_64 Compiling\ AppUpdater.swift,\ DownloadManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+sandbox-exec: sandbox_apply: Operation not permitted
+SwiftCompile normal x86_64 Compiling\ GameState.swift,\ GameType.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameState.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameType.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameState.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameType.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ JadeiteManager.swift,\ PatchManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/JadeiteManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/PatchManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/JadeiteManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/PatchManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ DXMTManager.swift,\ GameManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DXMTManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DXMTManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ GameConfig.swift,\ GameInfo.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameConfig.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameInfo.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameConfig.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameInfo.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ Extensions.swift,\ ProcessRunner.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Utilities/Extensions.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Utilities/ProcessRunner.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Utilities/Extensions.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Utilities/ProcessRunner.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ RegistryManager.swift,\ WineManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/RegistryManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/RegistryManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftEmitModule normal x86_64 Emitting\ module\ for\ Kafka_Launcher (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+sandbox-exec: sandbox_apply: Operation not permitted
+Failed frontend command:
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift-frontend -frontend -emit-module -experimental-skip-non-inlinable-function-bodies-without-types /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameConfig.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameInfo.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameState.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Models/GameType.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DXMTManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameServerAPI.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameVersionDetector.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/JadeiteManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/PatchManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/RegistryManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Utilities/Extensions.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Utilities/ProcessRunner.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Game/GameDetailView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Settings/SettingsView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/MainView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/ContentView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Kafka_LauncherApp.swift /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources/GeneratedAssetSymbols.swift -target x86_64-apple-macos14.0 -module-can-import-version AppKit 2685.60.104 2685.60.104 -module-can-import-version DeveloperToolsSupport 23.40.26 23.40.26 -module-can-import-version SwiftUI 7.5.3 7.5.3 -disable-cross-import-overlay-search -swift-module-cross-import WebKit /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Cryptexes/OS/System/Library/Frameworks/WebKit.framework/Modules/WebKit.swiftcrossimport/SwiftUI.swiftoverlay -swift-module-cross-import WebKit /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk/System/Library/Frameworks/WebKit.framework/Modules/WebKit.swiftcrossimport/SwiftUI.swiftoverlay -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libFoundationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#FoundationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libObservationMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#ObservationMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libPreviewsMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#PreviewsMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftMacros -load-resolved-plugin /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib/swift/host/plugins/libSwiftUIMacros.dylib\#/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server\#SwiftUIMacros -disable-implicit-swift-modules -Xcc -fno-implicit-modules -Xcc -fno-implicit-module-maps -explicit-swift-module-map-file /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher-dependencies-1.json -enable-objc-interop -stack-check -sdk /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.5.sdk -I /tmp/KafkaLauncherDerivedData/Build/Products/Debug -F /tmp/KafkaLauncherDerivedData/Build/Products/Debug -no-color-diagnostics -Xcc -fno-color-diagnostics -enable-testing -g -debug-info-format\=dwarf -dwarf-version\=4 -module-cache-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -swift-version 5 -Onone -D DEBUG -serialize-debugging-options -const-gather-protocols-file /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka-Launcher_const_extract_protocols.json -enable-upcoming-feature DisableOutwardActorInference -enable-upcoming-feature InferSendableFromCaptures -enable-upcoming-feature GlobalActorIsolatedTypesUsability -enable-upcoming-feature MemberImportVisibility -enable-upcoming-feature InferIsolatedConformances -enable-upcoming-feature NonisolatedNonsendingByDefault -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -default-isolation\=MainActor -empty-abi-descriptor -validate-clang-modules-once -clang-build-session-file /tmp/KafkaLauncherDerivedData/ModuleCache.noindex/Session.modulevalidation -Xcc -working-directory -Xcc /Volumes/OCungRoi/PRJ/Kafka-Launcher -enable-anonymous-context-mangled-names -file-compilation-dir /Volumes/OCungRoi/PRJ/Kafka-Launcher -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -Xcc -ivfsstatcache -Xcc /tmp/KafkaLauncherDerivedData/SDKStatCaches.noindex/macosx26.5-25F70-e082c4a02f00227109f4ed75e425c832.sdkstatcache -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/swift-overrides.hmap -Xcc -iquote -Xcc /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-generated-files.hmap -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-own-target-headers.hmap -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-all-target-headers.hmap -Xcc -iquote -Xcc /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Kafka-Launcher-project-headers.hmap -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Products/Debug/include -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources-normal/x86_64 -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources/x86_64 -Xcc -I/tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources -Xcc -DDEBUG\=1 -no-auto-bridging-header-chaining -module-name Kafka_Launcher -frontend-parseable-output -disable-clang-spi -clang-target x86_64-apple-macos26.5 -target-sdk-version 26.5 -target-sdk-name macosx26.5 -in-process-plugin-server-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/libSwiftInProcPluginServer.dylib -emit-module-doc-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher.swiftdoc -emit-module-source-info-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher.swiftsourceinfo -emit-objc-header-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher-Swift.h -serialize-diagnostics-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka-Launcher-primary-emit-module.dia -emit-dependencies-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka-Launcher-primary-emit-module.d -o /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher.swiftmodule -emit-abi-descriptor-path /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/Objects-normal/x86_64/Kafka_Launcher.abi.json
+
+EmitSwiftModule normal x86_64 (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:7:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var status: WineStatus = .notChecked
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:8:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var installProgress: WineInstallProgress?
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:11:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var customWinePath: String = ""
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:13:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private let fileManager = FileManager.default
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:17:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let basePath = NSHomeDirectory() + "/.kafka-launcher"
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:18:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let winePath = basePath + "/wine"
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:19:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let defaultPrefixPath = basePath + "/wineprefix"
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:20:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let logsPath = basePath + "/logs"
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:21:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let dxmtPath = basePath + "/dxmt"
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:22:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let sidecarPath = basePath + "/sidecar"
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:23:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let protonExtrasFiles = [
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:29:24: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static let devProjectRoot = ((#filePath as NSString).deletingLastPathComponent as NSString).deletingLastPathComponent
+                       ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:33:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let distributions: [WineDistribution] = [
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:103:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let defaultDistribution = distributions.first(where: { $0.id == "9.9-dxmt" }) ?? distributions[0]
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:107:24: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static let kWineState = "wine_state"
+                       ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:108:24: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static let kWineTag = "wine_tag"
+                       ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:109:24: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static let kWineUpdateTag = "wine_update_tag"
+                       ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:110:24: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static let kWineNetBIOSName = "wine_netbiosname"
+                       ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:111:24: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static let kInstalledDXMTVersion = "installed_dxmt_version"
+                       ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:115:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func checkWineAvailability() -> WineStatus {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:164:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func installWine(distribution: WineDistribution? = nil, onProgress: ((WineInstallProgress) -> Void)? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:250:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func recreateWinePrefix(prefixPath: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:263:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func initializeWinePrefix(prefixPath: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:289:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let mediaFoundationDLLs = [
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:294:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let mediaFoundationServiceDLLs = ["colorcnv", "msmpeg2adec", "msmpeg2vdec"]
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:296:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func installMediaFoundation(prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:338:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func launchGame(
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:372:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func launchWithBinary(
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:415:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func exec(
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:452:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func setProps(
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:480:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func applyRegistryFile(_ regFilePath: String, prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:499:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func setNVExtension(prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:527:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func toWinePath(_ absPath: String) -> String {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:533:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func waitForWineServerOff(prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:544:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func killWineServer(prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:558:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func openCmdWindow(gameDir: String, prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:595:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func openWineTool(_ tool: String, prefix: String? = nil) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:618:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func getWineBinary() -> String {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:631:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func shellSingleQuoted(_ value: String) -> String {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:635:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func appleScriptString(_ value: String) -> String {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:641:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func getWineServerBinary() -> String {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:648:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func wineEnvironment(prefix: String? = nil) -> [String: String] {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:655:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func findSystemWine() -> String? {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:666:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func generateNetBIOSName() -> String {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:672:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func ensureProtonExtrasAvailable() throws -> Bool {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:712:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func downloadFile(
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:736:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func extractArchive(_ archivePath: String, to destination: String, winePath: String? = nil, onProgress: ((Double) -> Void)? = nil) async throws {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:789:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func removeQuarantineAttribute(at path: String) async throws {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:795:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func rmrf(_ path: String) async throws {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:799:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func runWineProcess(_ wineBin: String, arguments: [String], environment: [String: String]) async throws {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:5:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class AppUpdater: NSObject, URLSessionDownloadDelegate {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:6:16: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    static let shared = AppUpdater()
+               ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:8:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var currentVersion: String {
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:12:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var isChecking = false
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:13:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var isDownloading = false
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:14:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var updateProgress: Double = 0.0
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:15:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var updateStatus: String = ""
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:16:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var updateAvailable = false
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:17:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var showUpdatePrompt = false
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:18:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var latestVersion: String?
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:19:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var releaseNotes: String?
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:20:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var downloadURL: URL?
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:22:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var downloadTask: URLSessionDownloadTask?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:23:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var session: URLSession?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:24:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var continuation: CheckedContinuation<URL, Error>?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:25:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var destinationURL: URL?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:27:20: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private struct GitHubRelease: Decodable {
+                   ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:33:20: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private struct ReleaseAsset: Decodable {
+                   ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:38:14: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    override init() {
+             ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:43:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func checkForUpdates(prompt: Bool = false) async -> Bool {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:104:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func installUpdate() async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:265:25: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static func preferredAsset(from assets: [ReleaseAsset]) -> ReleaseAsset? {
+                        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:290:25: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static func shellQuoted(_ value: String) -> String {
+                        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:294:25: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static func findAppBundle(in directory: URL) throws -> URL {
+                        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:310:25: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static func validateDownloadedApp(_ appURL: URL) throws {
+                        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:343:25: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static func updaterError(_ message: String) -> NSError {
+                        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:349:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:377:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didWriteData bytesWritten: Int64, totalBytesWritten: Int64, totalBytesExpectedToWrite: Int64) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:391:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/AppUpdater.swift:5:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class AppUpdater: NSObject, URLSessionDownloadDelegate {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:6:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class DownloadManager: NSObject {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:7:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var activeDownloads: [String: DownloadTask] = [:]
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:9:12: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    struct DownloadTask: Identifiable {
+           ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:35:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var _session: URLSession?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:36:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var session: URLSession {
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:46:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var downloadTasks: [String: URLSessionDownloadTask] = [:]
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:47:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var progressHandlers: [String: (Double) -> Void] = [:]
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:48:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var completionHandlers: [String: (Result<URL, Error>) -> Void] = [:]
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:49:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var destinations: [String: URL] = [:]
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:50:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var lastProgressTime: [String: Date] = [:]
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:51:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var lastProgressBytes: [String: Int64] = [:]
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:55:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func download(
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:74:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func downloadAndExtract(
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:126:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func extractArchive(at archivePath: String, to destination: String) async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:169:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func verifyFile(at path: String, expectedMD5: String) -> Bool {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:175:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func cancel(id: String) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:180:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func pause(id: String) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:191:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    enum DownloadError: LocalizedError {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/DownloadManager.swift:6:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class DownloadManager: NSObject {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:6:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class GameManager {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:7:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var games: [GameType: GameInfo]
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:8:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var gameStates: [GameType: GameState] = [:]
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:9:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var settings: LauncherSettings
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:10:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var selectedGame: GameType
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:11:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var errorMessage: String?
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:12:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var showErrorAlert: Bool = false
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:14:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    let downloadManager = DownloadManager()
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:15:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    let wineManager = WineManager()
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:16:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    let api = GameServerAPI.shared
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:17:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var activeProxyProcess: Process?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:18:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private var activePSProcess: Process?
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:20:5: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    init() {
+    ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:40:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var currentGame: GameInfo {
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:44:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var currentState: GameState {
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:50:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func selectGame(_ type: GameType) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:57:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func reportError(_ message: String, for type: GameType) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:65:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func checkWineStatus() async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:80:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func applyWineSettings(for gameType: GameType? = nil) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:97:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func findFreePort() -> Int {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:128:17: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private let isArm = false
+                ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:131:9: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    var proxyDirectoryPath: String {
+        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:136:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func ensureProxyBinaryAvailable(config: GameConfig) async throws -> (proxyPath: String, psPath: String) {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:165:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func downloadProxy() async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:214:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func downloadPSServer() async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:253:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func downloadProxyArchive() async throws {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:266:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func installWine(distribution: WineDistribution? = nil) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:283:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func checkAllGameStates() async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:342:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func isGamePresent(_ type: GameType, at dir: String) -> Bool {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:351:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func locateGame(_ type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:374:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func fetchAllBackgrounds() async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:391:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func performAction(for type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:418:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func selectInstallDirectory(for type: GameType) async -> URL? {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:433:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func installGame(_ type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:506:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func updateGame(_ type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:516:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func launchGame(_ type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:1022:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func generateLaunchBatch(gameDir: String, executable: String, type: GameType) -> String {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:1047:25: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private static func filesToRemove(for type: GameType) -> [String] {
+                        ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:1081:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func applyNetworkBlocking(for type: GameType) async throws {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:1129:18: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    private func fixWebview(type: GameType, prefix: String) async throws {
+                 ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:1171:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func checkIntegrity(for type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:1202:10: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+    func predownloadUpdate(for type: GameType) async {
+         ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameManager.swift:6:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class GameManager {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:6:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class WineManager {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/WineManager.swift:6:7: error: external macro implementation type 'ObservationMacros.ObservableMacro' could not be found for macro 'Observable()'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+class WineManager {
+      ^
+Observation.Observable:2:210: note: 'Observable()' declared here
+@attached(member, names: named(_$observationRegistrar), named(access), named(withMutation), named(shouldNotifyObservers)) @attached(memberAttribute) @attached(extension, conformances: Observable) public macro Observable() = #externalMacro(module: "ObservationMacros", type: "ObservableMacro")
+                                                                                                                                                                                                                 ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Game/GameDetailView.swift:6:6: error: 'init(wrappedValue:)' is unavailable: The wrapped value must be an object that conforms to Observable
+    @Bindable var gameManager: GameManager
+     ^~~~~~~~
+SwiftUI.Bindable.init:3:10: note: 'init(wrappedValue:)' has been explicitly marked unavailable here
+  public init(wrappedValue: Value)}
+         ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Game/GameDetailView.swift:218:6: error: 'init(wrappedValue:)' is unavailable: The wrapped value must be an object that conforms to Observable
+    @Bindable var gameManager: GameManager
+     ^~~~~~~~
+SwiftUI.Bindable.init:3:10: note: 'init(wrappedValue:)' has been explicitly marked unavailable here
+  public init(wrappedValue: Value)}
+         ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Settings/SettingsView.swift:6:6: error: 'init(wrappedValue:)' is unavailable: The wrapped value must be an object that conforms to Observable
+    @Bindable var gameManager: GameManager
+     ^~~~~~~~
+SwiftUI.Bindable.init:3:10: note: 'init(wrappedValue:)' has been explicitly marked unavailable here
+  public init(wrappedValue: Value)}
+         ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Settings/SettingsView.swift:225:6: error: 'init(wrappedValue:)' is unavailable: The wrapped value must be an object that conforms to Observable
+    @Bindable var gameManager: GameManager
+     ^~~~~~~~
+SwiftUI.Bindable.init:3:10: note: 'init(wrappedValue:)' has been explicitly marked unavailable here
+  public init(wrappedValue: Value)}
+         ^
+/Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/MainView.swift:179:1: error: external macro implementation type 'PreviewsMacros.SwiftUIView' could not be found for macro 'Preview(_:body:)'; '/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/bin/swift-plugin-server' produced malformed response
+#Preview {
+^
+SwiftUI.Preview:2:41: note: 'Preview(_:body:)' declared here
+@freestanding(declaration) public macro Preview(_ name: String? = nil, @ViewBuilder body: @escaping @MainActor () -> any View) = #externalMacro(module: "PreviewsMacros", type: "SwiftUIView")
+                                        ^
+
+SwiftCompile normal x86_64 Compiling\ GameDetailView.swift,\ SettingsView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Game/GameDetailView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Settings/SettingsView.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Game/GameDetailView.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/Settings/SettingsView.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ GameServerAPI.swift,\ GameVersionDetector.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameServerAPI.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameVersionDetector.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameServerAPI.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Services/GameVersionDetector.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ GeneratedAssetSymbols.swift /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+SwiftCompile normal x86_64 /tmp/KafkaLauncherDerivedData/Build/Intermediates.noindex/Kafka-Launcher.build/Debug/Kafka-Launcher.build/DerivedSources/GeneratedAssetSymbols.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ Kafka_LauncherApp.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Kafka_LauncherApp.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+sandbox-exec: sandbox_apply: Operation not permitted
+
+SwiftCompile normal x86_64 /Volumes/OCungRoi/PRJ/Kafka-Launcher/Kafka_LauncherApp.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+    cd /Volumes/OCungRoi/PRJ/Kafka-Launcher
+    
+
+SwiftCompile normal x86_64 Compiling\ MainView.swift,\ ContentView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/Views/MainView.swift /Volumes/OCungRoi/PRJ/Kafka-Launcher/ContentView.swift (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+
+** BUILD FAILED **
+
+
+The following build commands failed:
+	SwiftEmitModule normal x86_64 Emitting\ module\ for\ Kafka_Launcher (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+	EmitSwiftModule normal x86_64 (in target 'Kafka-Launcher' from project 'Kafka-Launcher')
+	Building project Kafka-Launcher with scheme Kafka-Launcher
+(3 failures)

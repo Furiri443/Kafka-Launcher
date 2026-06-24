@@ -565,17 +565,20 @@ class WineManager {
             "/v", "RetinaMode", "/d", "n", "/f"
         ], environment: wineEnvironment(prefix: pfx))
 
-        // Launch Terminal.app with wine cmd
-        let script = """
-        tell application "Terminal"
-            activate
-            do script "WINEPREFIX='\(pfx)' WINEDEBUG='fixme-all,err-unwind' '\(wineBin)' cmd /c 'cd /d \(toWinePath(gameDir)) && cmd'"
-        end tell
+        // Use a temporary .command launcher to avoid fragile AppleScript quoting.
+        let commandPath = Self.basePath + "/open-wine-console.command"
+        let commandContents = """
+        #!/bin/zsh
+        export WINEPREFIX=\(shellSingleQuoted(pfx))
+        export WINEDEBUG='fixme-all,err-unwind'
+        exec \(shellSingleQuoted(wineBin)) cmd /k \(shellSingleQuoted("cd /d \(toWinePath(gameDir))"))
         """
+        try commandContents.write(toFile: commandPath, atomically: true, encoding: .utf8)
+        try fileManager.setAttributes([.posixPermissions: 0o755], ofItemAtPath: commandPath)
 
         let process = Process()
-        process.executableURL = URL(fileURLWithPath: "/usr/bin/osascript")
-        process.arguments = ["-e", script]
+        process.executableURL = URL(fileURLWithPath: "/usr/bin/open")
+        process.arguments = ["-a", "Terminal", commandPath]
         try process.run()
     }
 
@@ -617,6 +620,10 @@ class WineManager {
         let wine64 = Self.winePath + "/bin/wine64"
         let wine = Self.winePath + "/bin/wine"
         return FileManager.default.fileExists(atPath: wine64) ? wine64 : wine
+    }
+
+    private func shellSingleQuoted(_ value: String) -> String {
+        "'" + value.replacingOccurrences(of: "'", with: "'\\''") + "'"
     }
 
     private func getWineServerBinary() -> String {

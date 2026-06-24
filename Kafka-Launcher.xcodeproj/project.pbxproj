@@ -9,6 +9,7 @@
 /* Begin PBXFileReference section */
 		C609B2A02FE3E4330029D130 /* Kafka-Launcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Kafka-Launcher.xcodeproj"; sourceTree = "<group>"; };
 		C640525D2FC6B1BC003A9E3B /* Kafka-Launcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Kafka-Launcher.xcodeproj"; sourceTree = "<group>"; };
+		C67947B72FEC462B00A4003B /* Kafka-Launcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Kafka-Launcher.xcodeproj"; sourceTree = "<group>"; };
 		C6E9E46B2FE9ABAE007C481C /* Kafka-Launcher.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "Kafka-Launcher.xcodeproj"; sourceTree = "<group>"; };
 		C6F2BF2C2F90EE87006C60B9 /* Kafka-Launcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Kafka-Launcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -38,6 +39,11 @@
 			sourceTree = "<group>";
 		};
 		C640525F2FC6B1BC003A9E3B /* Products */ = {
+			isa = PBXGroup;
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C67947BA2FEC462B00A4003B /* Products */ = {
 			isa = PBXGroup;
 			name = Products;
 			sourceTree = "<group>";
@@ -116,6 +122,10 @@
 			productRefGroup = C6F2BF2D2F90EE87006C60B9 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = C67947BA2FEC462B00A4003B /* Products */;
+					ProjectRef = C67947B72FEC462B00A4003B /* Kafka-Launcher.xcodeproj */;
+				},
 				{
 					ProductGroup = C6E9E46E2FE9ABAE007C481C /* Products */;
 					ProjectRef = C6E9E46B2FE9ABAE007C481C /* Kafka-Launcher.xcodeproj */;
