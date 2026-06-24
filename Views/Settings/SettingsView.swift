@@ -325,7 +325,41 @@ private struct WineSettingsSection: View {
 
                 if wineStatus.isReady {
                     Divider().opacity(0.4)
-                    
+
+                    HStack {
+                        Text("Wine Tools")
+                            .font(.callout)
+                        Spacer()
+                        Button {
+                            openWineTool("winecfg")
+                        } label: {
+                            Label("Wine Config", systemImage: "wineglass")
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+
+                        Button {
+                            openWineTool("regedit")
+                        } label: {
+                            Label("Registry Editor", systemImage: "doc.text.magnifyingglass")
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+
+                        Button {
+                            openConsole()
+                        } label: {
+                            Label("Console (CMD)", systemImage: "terminal")
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.small)
+                    }
+                    Text("Opens the built-in Wine tools against the default prefix (~/.kafka-launcher/wineprefix).")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+
+                    Divider().opacity(0.4)
+
                     HStack {
                         Text("Troubleshooting")
                             .font(.callout)
@@ -573,6 +607,33 @@ private struct WineSettingsSection: View {
             try? await gameManager.wineManager.recreateWinePrefix()
             await MainActor.run {
                 isRecreatingPrefix = false
+            }
+        }
+    }
+
+    private func openWineTool(_ tool: String) {
+        Task {
+            gameManager.applyWineSettings()
+            do {
+                try await gameManager.wineManager.openWineTool(tool)
+            } catch {
+                await MainActor.run {
+                    installError = "Failed to open \(tool): \(error.localizedDescription)"
+                }
+            }
+        }
+    }
+
+    private func openConsole() {
+        Task {
+            gameManager.applyWineSettings()
+            let gameDir = WineManager.basePath
+            do {
+                try await gameManager.wineManager.openCmdWindow(gameDir: gameDir)
+            } catch {
+                await MainActor.run {
+                    installError = "Failed to open console: \(error.localizedDescription)"
+                }
             }
         }
     }

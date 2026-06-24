@@ -559,6 +559,12 @@ class WineManager {
         let pfx = prefix ?? Self.defaultPrefixPath
         let wineBin = getWineBinary()
 
+        // Disable RetinaMode so the console window isn't tiny.
+        try? await runWineProcess(wineBin, arguments: [
+            "reg", "add", "HKEY_CURRENT_USER\\Software\\Wine\\Mac Driver",
+            "/v", "RetinaMode", "/d", "n", "/f"
+        ], environment: wineEnvironment(prefix: pfx))
+
         // Launch Terminal.app with wine cmd
         let script = """
         tell application "Terminal"
@@ -573,7 +579,32 @@ class WineManager {
         try process.run()
     }
 
-    // MARK: - Private Helpers
+    // MARK: - Open Wine Tools (winecfg / regedit)
+
+    /// Launch a built-in Wine GUI tool (e.g. "winecfg", "regedit") detached
+    /// against the given prefix. Does not wait for the tool to exit.
+    func openWineTool(_ tool: String, prefix: String? = nil) async throws {
+        let pfx = prefix ?? Self.defaultPrefixPath
+        let wineBin = getWineBinary()
+        guard fileManager.isExecutableFile(atPath: wineBin) else {
+            throw WineError.wineNotFound
+        }
+        try? fileManager.createDirectory(atPath: pfx, withIntermediateDirectories: true)
+        let env = wineEnvironment(prefix: pfx)
+
+        // Disable RetinaMode so the tool window isn't tiny.
+        try await runWineProcess(wineBin, arguments: [
+            "reg", "add", "HKEY_CURRENT_USER\\Software\\Wine\\Mac Driver",
+            "/v", "RetinaMode", "/d", "n", "/f"
+        ], environment: env)
+
+        let process = Process()
+        process.executableURL = URL(fileURLWithPath: wineBin)
+        process.arguments = [tool]
+        process.environment = env
+        try process.run()
+    }
+
 
     func getWineBinary() -> String {
         // 1. Custom path

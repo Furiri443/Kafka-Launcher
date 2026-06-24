@@ -5,7 +5,7 @@ import Foundation
 struct JadeiteManager {
 
     static let currentVersion = "4.1.0"
-    static let downloadURL = "https://codeberg.org/mkrsym1/jadeite/releases/download/v4.1.0/v4.1.0.zip"
+    static let downloadURL = "https://codeberg.org/mkrsym1/jadeite/releases/download/v5.0.1/v5.0.1.zip"
     static let jadeitePath = WineManager.basePath + "/jadeite"
     static let jadeiteExe = jadeitePath + "/jadeite.exe"
 
